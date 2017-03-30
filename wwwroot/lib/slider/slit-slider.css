@@ -152,38 +152,38 @@
 }
 
 .bg-img-1 {
-	background-image: url(../../img/1.max.jpg);
+	background-image: url(../../img/full/1.max.jpg);
 }
 .bg-img-2 {
-	background-image: url(../../img/2.max.jpg);
+    background-image: url(../../img/full/2.max.jpg);
 }
 .bg-img-3 {
-	background-image: url(../../img/3.max.jpg);
+    background-image: url(../../img/full/3.max.jpg);
 }
 
 
 @media  (max-width: 1980px) {
 .bg-img-1 {
-background-image: url(../../img/1.jpg);
+background-image: url(../../img/full/1.jpg);
 }
 .bg-img-2 {
-background-image: url(../../img/2.jpg);
+background-image: url(../../img/full/2.jpg);
 }
 .bg-img-3 {
-background-image: url(../../img/3.jpg);
+background-image: url(../../img/full/3.jpg);
 }
 }
 
 
 @media  (max-width: 1024px) {
 .bg-img-1 {
-background-image: url(../../img/1.min.jpg);
+background-image: url(../../img/full/1.min.jpg);
 }
 .bg-img-2 {
-background-image: url(../../img/2.min.jpg);
+background-image: url(../../img/full/2.min.jpg);
 }
 .bg-img-3 {
-background-image: url(../../img/3.min.jpg);
+background-image: url(../../img/full/3.min.jpg);
 }
 }
 

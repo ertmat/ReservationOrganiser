@@ -7,3 +7,12 @@ c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\Reserv
 C:\Users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.pdb
 C:\Users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.dll
 C:\Users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.pdb
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.deps.json
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.runtimeconfig.json
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.runtimeconfig.dev.json
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.dll
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.pdb
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.csprojResolveAssemblyReference.cache
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.AssemblyInfo.cs
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.dll
+I:\Praca\ertmat\VisualStudio\2017\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.pdb
