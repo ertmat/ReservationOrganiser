@@ -1,0 +1,73 @@
+﻿@model RegisterUserViewModel
+
+@{
+    ViewBag.Title = "Rejestracja";
+}
+
+<div class="container-fluid registrationWrapper clearfix">
+    <div class="registrationContent">
+        <div class="registrationHeader">
+            <h1>Rejestracja</h1>
+            <br>
+            <p>Stwórz konto</p>
+        </div>
+        <!--registrationHeader-->
+        <br>
+        <div asp-validation-summary="ModelOnly"></div>
+        <form method="post" enctype="multipart/form-data" asp-antiforgery="true" class="reservation-form">
+            <div class="row inputWrapper ">
+                <div class="col-md-12 ">
+                    <div class="left-inner-addon ">
+                        <i class="fa fa-user"></i>
+                        <input asp-for="UserName" type="text" class="form-control" placeholder="Użytkownik*">
+                        <span asp-validation-for="UserName"></span>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="left-inner-addon ">
+                        <i class="fa fa-user"></i>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Email*">
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="left-inner-addon ">
+                        <i class="fa fa-user"></i>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Hasło*">
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="left-inner-addon ">
+                        <i class="fa fa-user"></i>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Potwierdź Hasło*">
+                        <span asp-validation-for="ConfirmPassword"></span>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="registrationButtonPlaseholder">
+                <button type="submit" class="btn btn-info btn-df float-button-light">Zarejestruj</button>
+            </div>
+            <!--registrationButtonPlaseholder-->
+        </form>
+    </div>
+    <!--registrationContent-->
+</div>
+<!--registrationWrapper-->
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="lib/waves/waves.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+		Waves.attach('.float-button-light', ['waves-button', 'waves-float', 'waves-light']);
+		Waves.init();
+</script>

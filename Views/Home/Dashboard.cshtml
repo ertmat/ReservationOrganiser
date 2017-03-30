@@ -1,0 +1,509 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<link href="~/lib/calendar/fullcalendar.css" rel="stylesheet" type="text/css">
+
+<div class="mainWrapper">
+    <div id="sideBarWrapper">
+        <div id="sideBarContent">
+            <div id="bar" class="sideBar sideBarDark">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <!-- start sitebar-->
+                    <div class="sideBarUser">
+                        <div class="sideBarUserConteiner">
+                            <div class="sideBarUserConteinerImg">
+                                <img src="~/img/thumb/user_profile_large.jpg" alt="UserInfo" class="userimg">
+                            </div>
+                            <!--sideBarUserConteinerImg-->
+                            <div class="sideBarUserConteinerText">
+                                <span class="userInfo"><a href="user.html">@Model.SelectedHotel.Name </a><br><i class="fa fa-map-marker"></i> NY, Manhattan </span>
+                            </div>
+                            <!--sideBarUserConteinerText-->
+                        </div>
+                        <!--sideBarUserConteiner-->
+                    </div>
+                }
+                else
+                {
+                                        <!-- start sitebar-->
+                    <div class="sideBarUser">
+                        <div class="sideBarUserConteiner">
+                            <div class="sideBarUserConteinerImg">
+                                <img src="~/img/userProfilLarge.jpg" alt="UserInfo" class="userimg">
+                            </div>
+                            <!--sideBarUserConteinerImg-->
+                            <div class="sideBarUserConteinerText">
+                                <span class="userInfo"><a href="user.html">Twój Hotel </a><br><i class="fa fa-map-marker"></i> NY, Manhattan </span>
+                            </div>
+                            <!--sideBarUserConteinerText-->
+                        </div>
+                        <!--sideBarUserConteiner-->
+                    </div>
+                }
+                @*@await Component.InvokeAsync("HotelLogo")*@
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div id="menuContent">
+                        <div id="menuSize">
+                            <aside class="sidebar">
+                                <nav class="sidebar-nav">
+                                    <ul class="metismenu" id="menu">
+                                        <li class="text-center">
+                                            <a href="#" aria-expanded="true">
+                                                <span class="sidebar-nav-item">POKOJE</span>
+                                            </a>
+                                        </li>
+                                        @foreach (var room in Model.Rooms)
+                                        {
+                                            <li>
+                                                <a asp-controller="Home" asp-action="Room" asp-route-id="@room.Id" aria-expanded="true">
+                                                    <span class="fa fa-th-large" aria-hidden="true"></span>
+                                                    <span class="sidebar-nav-item"> @room.Name </span>
+                                                    <span class="fa fa-arrow-circle-o-right"></span>
+                                                </a>
+                                            </li>
+                                        }
+                                        <li class="text-left">
+                                            <a asp-controller="Home" asp-action="AddRoom" asp-route-id="@Model.SelectedHotel.Id" aria-expanded="true">
+                                                <i class="fa fa-1x fa-plus"></i>
+                                                <span class="sidebar-nav-item">Dodaj pokój</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </aside>
+                        </div>
+                        <!--menuSize-->
+                    </div>
+                    <!--menuContent-->
+                }
+                else
+                {
+                    <div id="menuContent">
+                        <div id="menuSize">
+                            <aside class="sidebar">
+                                <nav class="sidebar-nav">
+                                    <ul class="metismenu" id="menu">
+                                        <li>
+                                            <a href="#" aria-expanded="true">
+                                                Witaj w Organizerze!
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Register" aria-expanded="true">
+                                                Rejestracja
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Login" aria-expanded="true">
+                                                Logowanie
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </aside>
+                        </div>
+                        <!--menuSize-->
+                    </div>
+                    <!--menuContent-->
+                }
+                <div class="timeWrapper colorTheme">
+                    <div class="menuTime2">
+                        <span class="current-time2"></span>
+                    </div>
+                    <div class="menuTime">
+                        <span class="current-time"></span>
+                    </div>
+                </div>
+            </div>
+            <!--menuSize-->
+        </div>
+        <!--sideBar-->
+    </div>
+    <!--sideBarContent-->
+</div>
+<!--sideBarWrapper-->
+
+
+<div id="mainWrapper" class="mainConteiner column">
+    <!--start nainconteiner-->
+    <div class="mainConteinerConten">
+        <div class="container-fluid footerfix">
+            <div class="row firstRow">
+                <!--row firstRow-->
+                <div class="col-lg-9  col-md-8  col-sm-7">
+                    <div class="firstRowHeader">
+                        <h5>@ViewBag.Title</h5>
+                    </div>
+                    <ol class="breadcrumb">
+                        <li><a asp-controller="Home" asp-action="Index">Główna</a></li>
+                        <li class="active">@ViewBag.Title</li>
+                    </ol>
+                </div>
+                <!--firstRowHeader-->
+            </div>
+
+            <!--	MEIN CONTENT  -->
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <div class="panel-heading-title pull-left">
+                                <h6>PODSUMOWANIE</h6>
+                            </div>
+                            <!--panel-heading-title-->
+                            <div class="panel-heading-buttons pull-right"></div>
+                        </div>
+                        <!--panel-->
+                        <div class="panel-body">
+                            <div class="bs-component">
+                                <div class="indicatorsWrapper">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="indicators colorTheme">
+                                                <span>@Model.Rooms.Count()</span>
+                                                <br>Liczba pokoi
+                                                <i class="fa fa-cloud-download"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="indicators colorPurpule">
+                                                <span>@Model.Reservations.Count()</span>
+                                                <br>Liczba rezerwacji
+                                                <i class="fa fa-cloud-download"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="indicators colorPink">
+                                                <span>3350</span>
+                                                <br>Przychód ze wszystkich rezerwacji
+                                                <i class="fa fa-cloud-download"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="indicators colorCyan">
+                                                <span>35</span>
+                                                <br>Zarezerwowane dni
+                                                <i class="fa fa-cloud-download"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--	indicatorsWrapper-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--panel-body-->
+                </div>
+            </div>
+            <!--row-->
+            <!--	MEIN CONTENT  -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panelCalendar">
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <div class="col-lg-3">
+                                    <div id="external-events">
+                                        <div class="calendarHeader">
+                                            <h6>Add new events</h6>
+                                        </div>
+                                        <!--calendarHeader-->
+                                        <div class="calendarWrapper">
+                                            <form id="add_event_form" class="form-inline" method="post">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control new-event-form" placeholder="Add event...">
+                                                        <div class="input-group-addon">
+                                                            <button type="submit">Add</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h6>Choose  events color </h6>
+                                                <div class="form-group">
+                                                    <div class="event-tag">
+                                                        <span class="colorTheme tagSelect selected" data-tag="colorTheme"></span>
+                                                        <span class="colorPink tagSelect" data-tag="colorPink"></span>
+                                                        <span class="colorPurpule tagSelect" data-tag="colorPurpule"></span>
+                                                        <span class="colorCyan tagSelect" data-tag="colorCyan"></span>
+                                                        <span class="colorYellow" data-tag="colorYellow"></span>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <h6>Drag events to calendar</h6>
+                                            <div class="fc-event colorTheme" data-bg="colorTheme">Sport Match<span class="fa fa-close remove-event "></span></div>
+                                            <div class="fc-event colorPink" data-bg="colorPink">Meeting<span class="fa fa-close remove-event "></span></div>
+                                            <div class="fc-event colorPurpule" data-bg="colorPurpule">Relax<span class="fa fa-close remove-event "></span></div>
+                                            <div class="fc-event colorCyan" data-bg="colorCyan">Family Time<span class="fa fa-close remove-event "></span></div>
+                                            <div class="fc-event colorYellow" data-bg="colorYellow">Coffee<span class="fa fa-close remove-event "></span></div>
+
+
+                                            <div class="checkbox checkbox-blue">
+                                                <label>
+                                                    <input id="drop-remove" type="checkbox" /> Drop&amp;Remove
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                        <!--calendarWrapper-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div id="calendar" class="size fc-calendar box-shadow"></div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <!--panel-body-->
+                    </div>
+                    <!--calendarWrapper-->
+                </div>
+            </div>
+            <!--MEIN CONTENT -->
+            <!--row-->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets countdownWrapper">
+                        <div class="panel-body">
+                            <div class="countdownContent colorTextPurpule">
+                                <div id="countdown"></div>
+                            </div>
+                        </div>
+                        <div class="panel-footer colorPurpule">
+                            Appointment with Doctor Markinson
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets countdownWrapper">
+                        <div class="panel-body">
+                            <div class="countdownContent colorTextTheme">
+                                <div id="countdown1"></div>
+                            </div>
+                        </div>
+                        <div class="panel-footer colorTheme">
+                            Appointment with Doctor Markinson
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets countdownWrapper">
+                        <div class="panel-body">
+                            <div class="countdownContent colorTextCyan">
+                                <div id="countdown2"></div>
+                            </div>
+                        </div>
+                        <div class="panel-footer colorCyan">
+                            Appointment with Doctor Markinson
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="panel-body">
+                            <div class="userProfil">
+                                <img class="img-circle img-responsive" src="img/userProfil.jpg" alt="amsterdam">
+                                <span class="colorTextPurpule">Olga Lutskova</span>
+                                <p>Puerto Cortes, Honduras</p>
+                            </div>
+                            <!--userProfil-->
+                        </div>
+                        <div class="panel-footer colorPurpule">
+                            <div class="row userFooter">
+                                <div class="col-xs-4">
+                                    <p>
+                                        <i class="fa fa-heart"></i>
+                                        <br />25,498
+                                    </p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <br />145,369
+                                </div>
+                                <div class="col-xs-4">
+                                    <i class="fa fa-comment"></i>
+                                    <br />2,487
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="panel-body">
+                            <div class="userProfil">
+                                <img class="img-circle img-responsive" src="img/userProfil.jpg" alt="amsterdam">
+                                <span class="colorTextTheme">Olga Lutskova</span>
+                                <p>Puerto Cortes, Honduras</p>
+                            </div>
+                            <!--userProfil-->
+                        </div>
+                        <div class="panel-footer colorTheme">
+                            <div class="row userFooter">
+                                <div class="col-xs-4">
+                                    <p>
+                                        <i class="fa fa-heart"></i>
+                                        <br />25,498
+                                    </p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <br />145,369
+                                </div>
+                                <div class="col-xs-4">
+                                    <i class="fa fa-comment"></i>
+                                    <br />2,487
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="panel-body">
+                            <div class="userProfil">
+                                <img class="img-circle img-responsive" src="img/userProfil.jpg" alt="amsterdam">
+                                <span class="colorTextCyan">Olga Lutskova</span>
+                                <p>Puerto Cortes, Honduras</p>
+                            </div>
+                            <!--userProfil-->
+                        </div>
+                        <div class="panel-footer colorCyan">
+                            <div class="row userFooter">
+                                <div class="col-xs-4">
+                                    <p>
+                                        <i class="fa fa-heart"></i>
+                                        <br />25,498
+                                    </p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <i class="fa fa-thumb-tack"></i>
+                                    <br />145,369
+                                </div>
+                                <div class="col-xs-4">
+                                    <i class="fa fa-comment"></i>
+                                    <br />2,487
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="panel-body">
+                            <div class="downloadFoto" style="background-image: url(img/downloadFoto.jpg)">
+                            </div>
+                            <!--downloadFoto-->
+                        </div>
+                        <div class="panel-footer colorPurpule">
+                            <div class="downloadFotoFooter">
+                                <div class="row">
+                                    <div class="col-xs-6 left"><i class="fa fa-heart"></i>25,498</div>
+                                    <div class="col-xs-6 right"><i class="fa fa-cloud-download"></i>25,498</div>
+                                </div>
+                            </div>
+                            <!--downloadFotoFooter-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="panel-body">
+                            <div class="downloadFoto" style="background-image: url(img/downloadFoto.jpg)">
+                            </div>
+                            <!--downloadFoto-->
+                        </div>
+                        <div class="panel-footer colorTheme">
+                            <div class="downloadFotoFooter">
+                                <div class="row">
+                                    <div class="col-xs-6 left"><i class="fa fa-heart"></i>25,498</div>
+                                    <div class="col-xs-6 right"><i class="fa fa-cloud-download"></i>25,498</div>
+                                </div>
+                            </div>
+                            <!--downloadFotoFooter-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="panel-body">
+                            <div class="downloadFoto" style="background-image: url(img/downloadFoto.jpg)">
+                            </div>
+                            <!--downloadFoto-->
+                        </div>
+                        <div class="panel-footer colorCyan">
+                            <div class="downloadFotoFooter">
+                                <div class="row">
+                                    <div class="col-xs-6 left"><i class="fa fa-heart"></i>25,498</div>
+                                    <div class="col-xs-6 right"><i class="fa fa-cloud-download"></i>25,498</div>
+                                </div>
+                            </div>
+                            <!--downloadFotoFooter-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="meetingWrapper colorPurpule">
+                            Appointment with Doctor Markinson
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <!--meetingWrapper-->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="meetingWrapper colorTheme">
+                            Appointment with Doctor Markinson
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <!--meetingWrapper-->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="meetingWrapper colorCyan">
+                            Appointment with Doctor Markinson
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <!--meetingWrapper-->
+                    </div>
+                </div>
+            </div>
+            
+            <!--MEIN CONTENT-->                        
+
+
+        </div>
+    </div>
+</div><!--container-fluid-->
+
+<div class="hidden" id="placeholder11"></div>
+<div class="hidden" id="placeholder12"></div>
+<div class="hidden" id="placeholder13"></div>
+
+<script type="text/javascript" src="~/js/calendarFunctions.js"></script>
+<script src='~/lib/calendar/fullcalendar.js'></script>
+<script type="text/javascript" src="~/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="~/lib/waves/waves.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script>
+    Waves.attach('.float-button-light', ['waves-button', 'waves-float', 'waves-light']);
+    Waves.init();
+</script>

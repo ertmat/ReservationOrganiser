@@ -1,0 +1,308 @@
+﻿@model RoomViewModel
+
+@{
+    ViewData["Title"] = "Room";
+}
+
+<link href="~/lib/calendar/fullcalendar.css" rel="stylesheet" type="text/css">
+
+<div class="mainWrapper">
+    <div id="sideBarWrapper">
+        <div id="sideBarContent">
+            <div id="bar" class="sideBar sideBarDark">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <!-- start sitebar-->
+                    <div class="sideBarUser">
+                        <div class="sideBarUserConteiner">
+                            <div class="sideBarUserConteinerImg">
+                                <img src="~/img/thumb/user_profile_large.jpg" alt="UserInfo" class="userimg">
+                            </div>
+                            <!--sideBarUserConteinerImg-->
+                            <div class="sideBarUserConteinerText">
+                                <span class="userInfo"><a href="user.html">@Model.SelectedHotel.Name </a><br> Bosmańska 2 </span>
+                            </div>
+                            <!--sideBarUserConteinerText-->
+                        </div>
+                        <!--sideBarUserConteiner-->
+                    </div>
+                }
+                else
+                {
+                                        <!-- start sitebar-->
+                    <div class="sideBarUser">
+                        <div class="sideBarUserConteiner">
+                            <div class="sideBarUserConteinerImg">
+                                <img src="~/img/userProfilLarge.jpg" alt="UserInfo" class="userimg">
+                            </div>
+                            <!--sideBarUserConteinerImg-->
+                            <div class="sideBarUserConteinerText">
+                                <span class="userInfo"><a href="user.html">Twój Hotel </a><br><i class="fa fa-map-marker"></i> NY, Manhattan </span>
+                            </div>
+                            <!--sideBarUserConteinerText-->
+                        </div>
+                        <!--sideBarUserConteiner-->
+                    </div>
+                }
+                @*@await Component.InvokeAsync("HotelLogo")*@
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div id="menuContent">
+                        <div id="menuSize">
+                            <aside class="sidebar">
+                                <nav class="sidebar-nav">
+                                    <ul class="metismenu" id="menu">
+                                        <li class="text-center">
+                                            <a href="#" aria-expanded="true">
+                                                <span class="sidebar-nav-item">REZERWACJE</span>
+                                            </a>
+                                        </li>
+                                        @foreach (var reservation in Model.Reservations)
+                                        {
+                                            <li>
+                                                <a asp-controller="Home" asp-action="Reservation" asp-route-id="@reservation.Id" aria-expanded="true">
+                                                    <span class="fa fa-th-large" aria-hidden="true"></span>
+                                                    <span class="sidebar-nav-item"> @reservation.Name </span>
+                                                    <span class="fa fa-arrow-circle-o-right"></span>
+                                                </a>
+                                            </li>
+                                        }
+                                        <li class="text-left">
+                                            <a asp-controller="Home" asp-action="AddReservation" asp-route-id="@Model.Id" aria-expanded="true">
+                                                <i class="fa fa-1x fa-plus"></i>
+                                                <span class="sidebar-nav-item">Nowa rezerwacja</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </aside>
+                        </div>
+                        <!--menuSize-->
+                    </div>
+                    <!--menuContent-->
+                }
+                else
+                {
+                    <div id="menuContent">
+                        <div id="menuSize">
+                            <aside class="sidebar">
+                                <nav class="sidebar-nav">
+                                    <ul class="metismenu" id="menu">
+                                        <li>
+                                            <a href="#" aria-expanded="true">
+                                                Witaj w Organizerze!
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Register" aria-expanded="true">
+                                                Rejestracja
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Account" asp-action="Login" aria-expanded="true">
+                                                Logowanie
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </aside>
+                        </div>
+                        <!--menuSize-->
+                    </div>
+                    <!--menuContent-->
+
+                }
+
+                <div class="timeWrapper colorTheme">
+                    <div class="menuTime2">
+                        <span class="current-time2"></span>
+                    </div>
+                    <div class="menuTime">
+                        <span class="current-time"></span>
+                    </div>
+                </div>
+            </div>
+            <!--menuSize-->
+        </div>
+        <!--sideBar-->
+    </div>
+    <!--sideBarContent-->
+</div>
+<!--sideBarWrapper-->
+
+<div id="mainWrapper" class="mainConteiner column">
+    <!--start nainconteiner-->
+    <div class="mainConteinerConten">
+        <div class="container-fluid footerfix">
+            <div class="row firstRow">
+                <!--row firstRow-->
+                <div class="col-lg-9  col-md-8  col-sm-7">
+                    <div class="firstRowHeader">
+                        <h5>@Model.Name</h5>
+                    </div>
+                    <ol class="breadcrumb">
+                        <li><a asp-controller="Home" asp-action="Index">Główna</a></li>
+                        <li><a asp-controller="Home" asp-action="Dashboard">@Model.SelectedHotel.Name</a></li>
+                        <li class="active">@Model.Name</li>
+                    </ol>
+                </div>
+                <!--firstRowHeader-->
+            </div>
+
+            <!--	MEIN CONTENT  -->
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <div class="panel-heading-title pull-left">
+                                <h6>PODSUMOWANIE</h6>
+                            </div>
+                            <!--panel-heading-title-->
+                            <div class="panel-heading-buttons pull-right"></div>
+                        </div>
+                        <!--panel-->
+                        <div class="panel-body">
+                            <div class="bs-component">
+                                <div class="indicatorsWrapper">
+                                    <div class="row">
+                                        <a asp-action="AddReservation" asp-controller="Home">
+                                            <div class="col-lg-12">
+                                                <div class="indicators colorPurpule">
+                                                    <span>@Model.Reservations.Count()</span>
+                                                    <br>Rezerwacji
+                                                    <i class="fa fa-500px fa-plus"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="indicators colorPink">
+                                                <span>@Model.TotalEarn</span>
+                                                <br>Przychód ze wszystkich rezerwacji
+                                                <i class="fa fa-cloud-download"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="indicators colorCyan">
+                                                <span>35</span>
+                                                <br>Zarezerwowane dni
+                                                <i class="fa fa-cloud-download"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--indicatorsWrapper-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--panel-body-->
+                </div>
+            </div>
+            <!--row-->
+            <!--	MEIN CONTENT  -->
+
+
+            <!--CALENDAR-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panelCalendar">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div id="calendar" class="size fc-calendar box-shadow"></div>
+                                </div>
+                                <div id="jsonData">@Model.jsonData</div>
+                            </div>
+                        </div>
+                        <!--panel-body-->
+                    </div>
+                    <!--calendarWrapper-->
+                </div>
+            </div>
+            <!--MEIN CONTENT -->
+            <!--row-->
+            <div class="row">
+            @foreach (var reservation in Model.Reservations)
+            {
+                <a asp-controller="Home" asp-action="Reservation" asp-route-id="@reservation.Id">
+                    <div class="col-lg-4">
+                        <div class="panel panel-widgets">
+                            <div class="panel-body">
+                                <div class="userProfil">
+                                    <span class="colorTextPurpule">@reservation.Name</span>
+                                    <p>
+                                        @reservation.StartDate.Month.@reservation.StartDate.Day - @reservation.EndDate.Month.@reservation.EndDate.Day<br /><br />
+                                        @reservation.Description
+                                    </p>
+                                </div>
+                                <!--userProfil-->
+                            </div>
+                            <div class="panel-footer colorPurpule">
+                                <div class="row userFooter">
+                                    <div class="col-xs-4">
+                                        <p>
+                                            <i class="fa fa-hand-o-left"></i>
+                                            <br />@reservation.Deposit zaliczki
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-usd"></i>
+                                        <br />@reservation.Price zł za noc
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <i class="fa fa-user"></i>
+                                        <br />@reservation.Guests gości
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="meetingWrapper colorPurpule">
+                            Appointment with Doctor Markinson
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <!--meetingWrapper-->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="meetingWrapper colorTheme">
+                            Appointment with Doctor Markinson
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <!--meetingWrapper-->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-widgets">
+                        <div class="meetingWrapper colorCyan">
+                            Appointment with Doctor Markinson
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <!--meetingWrapper-->
+                    </div>
+                </div>
+            </div>
+
+            <!--MEIN CONTENT-->
+
+
+        </div>
+    </div>
+</div><!--container-fluid-->
+
+<div class="hidden" id="placeholder11"></div>
+<div class="hidden" id="placeholder12"></div>
+<div class="hidden" id="placeholder13"></div>
+
+
+<script>
+    Waves.attach('.float-button-light', ['waves-button', 'waves-float', 'waves-light']);
+    Waves.init();
+</script>

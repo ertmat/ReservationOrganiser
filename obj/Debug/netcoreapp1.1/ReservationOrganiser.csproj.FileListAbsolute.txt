@@ -1,0 +1,9 @@
+c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.deps.json
+c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.runtimeconfig.json
+c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.runtimeconfig.dev.json
+c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.dll
+c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.csprojResolveAssemblyReference.cache
+c:\users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.AssemblyInfo.cs
+C:\Users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\bin\Debug\netcoreapp1.1\ReservationOrganiser.pdb
+C:\Users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.dll
+C:\Users\ertma\documents\visual studio 2017\Projects\ReservationOrganiser\ReservationOrganiser\obj\Debug\netcoreapp1.1\ReservationOrganiser.pdb
