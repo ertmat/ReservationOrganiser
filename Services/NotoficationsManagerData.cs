@@ -11,6 +11,7 @@ namespace ReservationOrganiser.Services
         Notification Add(Notification newNotification);
         Notification Get(int id);
         IEnumerable<Notification> GetAll();
+        IEnumerable<Notification> GetForUser(string id);
 
     }
 
@@ -38,5 +39,12 @@ namespace ReservationOrganiser.Services
             _context.Add(newNotification);
             return newNotification;
         }
+
+        public IEnumerable<Notification> GetForUser(string id)
+        {
+            return _context.Notifications.Where(i => i.UserId == id);
+        }
+
+
     }
 }

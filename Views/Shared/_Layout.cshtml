@@ -21,6 +21,10 @@
     <link rel="icon" href="~/img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon" />
     <link href="~/lib/icheck/skins/all.css" rel="stylesheet">
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/lib/momentjs/moment.min.js"></script>
+    <script type="text/javascript" src="~/lib/waves/waves.min.js"></script>
 </head>
 
 <body>
@@ -52,23 +56,44 @@
                         <!--headerLogo-->
                     </div>
                     <!--nawbarMainLeft-->
-                    <div class="nawbarMainRight">
-                        <ul class="nawbarMainMenu">
-                            <li><a id="toggle-link" class="reminderIcon  hvr-rectangle-out"><i class="fa fa-bell"></i></a></li>
-                            <li><a asp-controller="Account" asp-action="Logout" id="toggle-link1" class="mailboxIcon  hvr-rectangle-out"><i class="fa fa-envelope"></i></a></li>
-                            <li><a id="toggle-link2" class="latestActivityIcon  hvr-rectangle-out"><i class="fa fa-calendar"></i></a></li>
-                        </ul>
-                        <div class="dropdown nawbarMainMenuSmallLeft">
-                            <span class="dropdown-toggle dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </span>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" id="toggle-link3" class="reminderIcon"><span class="headerMenuIconIndigo"><i class="fa fa-bell"></i></span>Reminder</a></li>
-                                <li><a asp-controller="Account" asp-action="Logout" id="toggle-link4" class="mailboxIcon"><span class="headerMenuIconIndigo"><i class="fa fa-envelope"></i></span>Wyloguj</a></li>
-                                <li><a href="#" id="toggle-link5" class="latestActivityIcon"><span class="headerMenuIconIndigo"><i class="fa fa-calendar"></i></span>Activity</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <div class="nawbarMainRight">
+                            <ul class="nawbarMainMenu">
+                                <li><a id="toggle-link1" class="mailboxIcon  hvr-rectangle-out"><i class="fa fa-envelope"></i></a></li>
+                                <li><a id="toggle-link2" class="latestActivityIcon  hvr-rectangle-out"><i class="fa fa-calendar"></i></a></li>
+                                <li><a asp-controller="Account" asp-action="Logout" id="toggle-link" class="reminderIcon  hvr-rectangle-out"><i class="fa fa-arrow-circle-o-down"></i></a></li>
                             </ul>
+                            @*<div class="dropdown nawbarMainMenuSmallLeft">
+                                <span class="dropdown-toggle dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" id="toggle-link4" class="mailboxIcon"><span class="headerMenuIconIndigo"><i class="fa fa-envelope"></i></span>Wiadomości</a></li>
+                                    <li><a href="#" id="toggle-link5" class="latestActivityIcon"><span class="headerMenuIconIndigo"><i class="fa fa-calendar"></i></span>Nadchodzące</a></li>
+                                    <li><a asp-controller="Account" asp-action="Login" id="toggle-link3" class="reminderIcon"><span class="headerMenuIconIndigo"><i class="fa fa-arrow-circle-o-down"></i></span>Wyloguj</a></li>
+                                </ul>
+                            </div>*@
                         </div>
-                    </div>
+
+                    }
+                    else
+                    {
+                        <div class="nawbarMainRight">
+                            <ul class="nawbarMainMenu">
+                                <li><a asp-controller="Account" asp-action="Login" id="toggle-link" class="reminderIcon  hvr-rectangle-out"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+                            </ul>
+                            <div class="dropdown nawbarMainMenuSmallLeft">
+                                <span class="dropdown-toggle dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </span>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Account" asp-action="Logout" id="toggle-link3" class="reminderIcon"><span class="headerMenuIconIndigo"><i class="fa fa-arrow-circle-o-up"></i></span>Zaloguj</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
                     <!--nawbarMainRight-->
                     <div id="sb-search" class="sb-search">
                         <form>
@@ -207,28 +232,20 @@
     <!--fotterWrapper-->
 
     <!--mainConteinerConten-->
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="~/lib/jquery-ui/jquery-ui.js"></script>
+
     <script src="~/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/lib/expandingSearchBar/uisearch.js"></script>
     <script type="text/javascript" src="~/lib/expandingSearchBar/classie.js"></script>
     <script type="text/javascript" src="~/lib/slimscroll/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="~/lib/customScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="~/lib/metisMenu/metisMenu.min.js"></script>
-    <script type="text/javascript" src="~/lib/momentjs/moment.min.js"></script>
-    <script type="text/javascript" src="~/lib/waves/waves.min.js"></script>
     <script type="text/javascript" src="~/lib/countdown/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="~/lib/chartjs/chart.min.js"></script>
-    <script type="text/javascript" src="~/lib/flotChart/jquery.flot.js"></script>
-    <script type="text/javascript" src="~/lib/flotChart/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="~/lib/flotChart/jquery.flot.resize.js"></script>
     <script type="text/javascript" src="~/js/functions.js"></script>
-    <script src='~/lib/calendar/fullcalendar.js'></script>
-    <script type="text/javascript" src="~/js/calendarFunctions.js"></script>
     <script type="text/javascript" src="~/js/buttonsFunctions.js"></script>
     <script type="text/javascript" src="~/lib/icheck/icheck.js"></script>
     <script type="text/javascript" src="~/lib/icheck/custom.js"></script>
-
+    <script src='~/lib/calendar/fullcalendar.js'></script>
+    <script type="text/javascript" src="~/js/calendarFunctions.js"></script>
 
 
 </body>
